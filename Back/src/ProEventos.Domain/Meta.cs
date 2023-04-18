@@ -19,7 +19,8 @@ namespace ProEventos.Domain
         public DateTime InicioOficial { get; set; }
         public DateTime FimOficial { get; set; }
         public int EmpresaId { get; set; }
-        // public Empresa Empresas { get; set; }
-        // public IEnumerable<FuncionarioMeta> FuncionariosMetas { get; set; }
+        
+        //public Empresa Empresas { get; set; }
+        //public IEnumerable<FuncionarioMeta> FuncionariosMetas { get; set; }
     }
 }

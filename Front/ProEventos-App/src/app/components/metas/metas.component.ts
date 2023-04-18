@@ -4,9 +4,9 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { EventoService } from '../../services/evento.service';
 import { Meta } from '../../models/Meta';
 import { MetaService } from 'src/app/services/meta.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-metas',
@@ -45,19 +45,20 @@ export class MetasComponent implements OnInit {
     private metaService: MetaService,
     private modalService: BsModalService,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private router: Router
   ) { }
 
   public ngOnInit(): void {
     this.spinner.show();
-    this.getEventos();
+    this.getMetas();
   }
 
   public alterarImagem(): void {
     this.exibirImagem = !this.exibirImagem;
   }
 
-  public getEventos(): void {
+  public getMetas(): void {
     this.metaService.getMetas().subscribe({
       next: (metas: Meta[]) => {
         this.metas = metas;
@@ -82,6 +83,10 @@ export class MetasComponent implements OnInit {
 
   decline(): void {
     this.modalRef.hide();
+  }
+
+  detalheMeta(id: number): void{
+    this.router.navigate([`metas/detalhe/${id}`]);
   }
 
 }
